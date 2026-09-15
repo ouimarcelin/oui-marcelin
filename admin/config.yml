@@ -1,4 +1,4 @@
-# Panneau d'administration : https://oui-marcelin.netlify.app/admin
+# Panneau d'administration : https://oui-marcelin.fr/admin
 backend:
   name: github
   repo: ouimarcelin/Book-Oui.Marcelin
@@ -9,8 +9,8 @@ backend:
     update: "Mise à jour de {{slug}}"
 
 locale: fr
-site_url: https://oui-marcelin.netlify.app
-display_url: https://oui-marcelin.netlify.app
+site_url: https://oui-marcelin.fr
+display_url: https://oui-marcelin.fr
 media_folder: assets/uploads
 public_folder: /assets/uploads
 
