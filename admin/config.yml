@@ -1,0 +1,114 @@
+# Panneau d'administration : https://oui-marcelin.netlify.app/admin
+backend:
+  name: github
+  repo: PSEUDO-GITHUB/oui-marcelin # à remplacer par ton pseudo GitHub
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+  commit_messages:
+    update: "Mise à jour de {{slug}}"
+
+locale: fr
+site_url: https://oui-marcelin.netlify.app
+display_url: https://oui-marcelin.netlify.app
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  - name: contenu
+    label: Contenu du site
+    editor:
+      preview: false
+    files:
+      - name: projets
+        label: Projets
+        file: content/projets.json
+        format: json
+        fields:
+          - label: Projets
+            name: projets
+            widget: list
+            label_singular: projet
+            hint: "L'ordre de la liste est l'ordre de la molette. Glisse un projet pour le déplacer."
+            summary: "{{fields.titre}} · {{fields.type}}"
+            collapsed: true
+            fields:
+              - { label: Titre, name: titre, widget: string }
+              - label: Identifiant
+                name: id
+                widget: string
+                hint: "Utilisé dans le lien direct (…netlify.app/#identifiant). Minuscules, chiffres et tirets."
+                pattern: ["^[a-z0-9-]+$", "Minuscules, chiffres et tirets uniquement"]
+              - { label: Type, name: type, widget: string, hint: "Ex. : Affiche vectorielle · Netflix" }
+              - { label: Année, name: annee, widget: string, required: false }
+              - { label: Couleur du projet, name: couleur, widget: color, default: "#121212" }
+              - { label: Description, name: texte, widget: text, required: false }
+              - label: Outils
+                name: outils
+                widget: select
+                multiple: true
+                required: false
+                options: [Ps, Ai, Id, Ae, Pr, Blender, C4D, Figma]
+              - label: Mise en page
+                name: mise_en_page
+                widget: select
+                default: auto
+                hint: "Ignorée si une grille avancée est remplie."
+                options:
+                  - { label: "Automatique (selon le nombre de médias)", value: auto }
+                  - { label: "1er média en grand à gauche", value: grand-gauche }
+                  - { label: "1er média en grand en haut", value: grand-haut }
+                  - { label: "Tous côte à côte", value: colonnes }
+              - label: Médias
+                name: medias
+                widget: list
+                label_singular: média
+                summary: "{{fields.type}} · {{fields.fichier}}{{fields.texte}}"
+                collapsed: true
+                fields:
+                  - label: Type
+                    name: type
+                    widget: select
+                    default: image
+                    options:
+                      - { label: Image, value: image }
+                      - { label: "Vidéo (mp4)", value: video }
+                      - { label: "Citation (texte sur fond de couleur)", value: citation }
+                  - { label: "Fichier (image ou vidéo)", name: fichier, widget: file, required: false }
+                  - { label: "Image d'aperçu (vidéo uniquement)", name: affiche, widget: image, required: false }
+                  - { label: "Texte (citation uniquement)", name: texte, widget: string, required: false }
+                  - label: Cadrage
+                    name: cadrage
+                    widget: string
+                    required: false
+                    hint: "Partie gardée quand l'image est recadrée : 50% 50% = centre, 50% 0% = haut, 0% 50% = gauche."
+                  - label: Ajustement
+                    name: ajustement
+                    widget: select
+                    default: remplir
+                    options:
+                      - { label: "Remplir la case (recadré)", value: remplir }
+                      - { label: "Image entière (sans recadrage)", value: contenir }
+                  - { label: "Couleur de fond (image entière)", name: fond, widget: color, required: false }
+              - label: Grille avancée
+                name: avance
+                widget: object
+                required: false
+                collapsed: true
+                hint: "Optionnel. Une lettre par média (a = 1er, b = 2e…), lignes séparées par | . Ex. : a b | a c"
+                fields:
+                  - { label: Zones, name: grille, widget: string, required: false }
+                  - { label: "Largeur des colonnes", name: colonnes, widget: string, required: false, hint: "Ex. : 1.1fr 1fr" }
+                  - { label: "Hauteur des lignes", name: lignes, widget: string, required: false, hint: "Ex. : 1fr 1fr" }
+
+      - name: site
+        label: Présentation
+        file: content/site.json
+        format: json
+        fields:
+          - { label: Nom, name: nom, widget: string }
+          - label: "Métiers (défilent après « Oui, je suis »)"
+            name: roles
+            widget: list
+            field: { label: Métier, name: role, widget: string }
+          - { label: Bio, name: bio, widget: text, hint: "Chaque retour à la ligne crée une nouvelle ligne sur le site." }

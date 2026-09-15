@@ -1,0 +1,521 @@
+{
+  "projets": [
+    {
+      "titre": "Yoplait",
+      "id": "yoplait",
+      "type": "Motion design · Spot publicitaire",
+      "annee": "2025",
+      "couleur": "#E30613",
+      "texte": "Spot de 10 secondes pour la gamme Saveur d’Autrefois : fraises en apesanteur, typographie cinétique et révélation de la gamme.",
+      "outils": [],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "video",
+          "fichier": "/assets/video/yoplait.mp4",
+          "affiche": "/assets/img/yoplait-poster.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/yoplait-1.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/yoplait-2.webp",
+          "cadrage": "0% 50%",
+          "ajustement": "remplir"
+        }
+      ],
+      "avance": {
+        "grille": "a a | b c",
+        "lignes": "1.05fr 1fr"
+      }
+    },
+    {
+      "titre": "TeknoPorno",
+      "id": "teknoporno",
+      "type": "Identité de festival · Projet de groupe",
+      "annee": "2024",
+      "couleur": "#46DC5A",
+      "texte": "Festival fictif qui mêle techno et culture porno pour décomplexer le regard du public. J’ai conçu la revue, le plan du site, les billets et le teaser.",
+      "outils": [
+        "Id",
+        "Ps",
+        "Ai"
+      ],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "image",
+          "fichier": "/assets/img/tekno-1.webp",
+          "cadrage": "50% 40%",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/tekno-2.webp",
+          "cadrage": "50% 45%",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/tekno-3.webp",
+          "cadrage": "40% 50%",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/tekno-4.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/tekno-5.webp",
+          "ajustement": "remplir"
+        }
+      ],
+      "avance": {
+        "grille": "a a b b c c | d d d e e e"
+      }
+    },
+    {
+      "titre": "Revolut × PSG",
+      "id": "revolut-psg",
+      "type": "3D · Concept de carte bancaire",
+      "annee": "2025",
+      "couleur": "#1F5FFF",
+      "texte": "Une carte Revolut aux couleurs du PSG, modélisée et animée dans Blender : pelouse, ballon, reflets de la puce.",
+      "outils": [
+        "Blender"
+      ],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "video",
+          "fichier": "/assets/video/revolut.mp4",
+          "affiche": "/assets/img/revolut-poster.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/revolut-1.webp",
+          "cadrage": "50% 45%",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/revolut-2.webp",
+          "ajustement": "remplir"
+        }
+      ],
+      "avance": {
+        "grille": "a b | a c",
+        "colonnes": "1.1fr 1fr"
+      }
+    },
+    {
+      "titre": "Stranger Things",
+      "id": "stranger-things",
+      "type": "Affiche vectorielle · Netflix",
+      "annee": "2024",
+      "couleur": "#B3121B",
+      "texte": "Le Démogorgon ouvre la gueule sur le portail où avancent trois héros. Une affiche 100 % vectorielle, poussée dans le détail jusqu’à faire oublier l’outil.",
+      "outils": [
+        "Ai"
+      ],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "image",
+          "fichier": "/assets/img/stranger-1.webp",
+          "cadrage": "45% 50%",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/stranger-2.webp",
+          "cadrage": "50% 6%",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/stranger-3.webp",
+          "ajustement": "remplir"
+        }
+      ],
+      "avance": {
+        "grille": "a b | a c"
+      }
+    },
+    {
+      "titre": "Coup de Foudre",
+      "id": "coup-de-foudre",
+      "type": "Affiche narrative · Photomontage",
+      "annee": "2024",
+      "couleur": "#22C1E6",
+      "texte": "La naissance du premier poisson-lanterne : une nuit d’orage, la foudre frappe sa corne encore inanimée. Ciel en trois calques, océan en perspective, faune composée pièce par pièce.",
+      "outils": [
+        "Ps"
+      ],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "image",
+          "fichier": "/assets/img/foudre-1.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/foudre-3.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/foudre-2.webp",
+          "cadrage": "45% 50%",
+          "ajustement": "remplir"
+        }
+      ],
+      "avance": {
+        "grille": "a b | a c",
+        "colonnes": "1.08fr 1fr",
+        "lignes": ".9fr 1fr"
+      }
+    },
+    {
+      "titre": "Switch Boy",
+      "id": "switch-boy",
+      "type": "3D · Concept produit",
+      "annee": "2025",
+      "couleur": "#8BAC0F",
+      "texte": "Et si la Switch rencontrait la Game Boy ? Concept de console, trois coloris et film de présentation en 3D.",
+      "outils": [],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "video",
+          "fichier": "/assets/video/switchboy.mp4",
+          "affiche": "/assets/img/switchboy-poster.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/switchboy-2.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/switchboy-1.webp",
+          "cadrage": "55% 50%",
+          "ajustement": "remplir"
+        }
+      ],
+      "avance": {
+        "grille": "a a | b c",
+        "lignes": "1.05fr 1fr"
+      }
+    },
+    {
+      "titre": "5 Majeur",
+      "id": "5-majeur",
+      "type": "Édition · Magazine de basket",
+      "annee": "2024",
+      "couleur": "#23447F",
+      "texte": "Dix pages pour le magazine 5 Majeur : l’identité existante respectée pour l’article sur Rudy Gobert, une mise en page inédite pour le top 5 de la décennie.",
+      "outils": [
+        "Id",
+        "Ps",
+        "Ai"
+      ],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "image",
+          "fichier": "/assets/img/majeur-1.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/majeur-2.webp",
+          "cadrage": "62% 50%",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/majeur-3.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/majeur-4.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/majeur-5.webp",
+          "ajustement": "remplir"
+        }
+      ],
+      "avance": {
+        "grille": "a a a a b b | c c d d e e",
+        "lignes": "1.15fr 1fr"
+      }
+    },
+    {
+      "titre": "King Accras",
+      "id": "king-accras",
+      "type": "Rebranding · Projet rémunéré",
+      "annee": "2024",
+      "couleur": "#F2B13C",
+      "texte": "Nouvelle identité pour un vendeur de fritures des marchés de Tours : logo et variantes, cartes de visite, menus et publications Instagram.",
+      "outils": [],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "image",
+          "fichier": "/assets/img/accras-1.webp",
+          "cadrage": "50% 22%",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/accras-2.webp",
+          "cadrage": "50% 0%",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/accras-3.webp",
+          "ajustement": "remplir"
+        }
+      ],
+      "avance": {
+        "grille": "a b | c b",
+        "colonnes": "1fr .82fr",
+        "lignes": "1.3fr 1fr"
+      }
+    },
+    {
+      "titre": "Backstage",
+      "id": "backstage",
+      "type": "Vidéo verticale · Montage",
+      "annee": "2025",
+      "couleur": "#6E4BFF",
+      "texte": "Coulisses d’un tournage en format vertical : rythme, lumière, fumée et habillage graphique pensés pour les réseaux.",
+      "outils": [],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "video",
+          "fichier": "/assets/video/bts.mp4",
+          "affiche": "/assets/img/bts-poster.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/bts-1.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/bts-2.webp",
+          "ajustement": "remplir"
+        }
+      ],
+      "avance": {
+        "grille": "a b | a c"
+      }
+    },
+    {
+      "titre": "1000 Bornes",
+      "id": "1000-bornes",
+      "type": "Packaging · Jeu de cartes · Projet de groupe",
+      "annee": "2024",
+      "couleur": "#FF4F9A",
+      "texte": "Un 1000 Bornes dans l’univers de Leta Sobierajski : couleurs qui vibrent, formes organiques, zébrures. J’ai signé la boîte, le dos et les familles vitesse et malus.",
+      "outils": [],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "image",
+          "fichier": "/assets/img/bornes-1.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/bornes-2.webp",
+          "cadrage": "50% 30%",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/bornes-3.webp",
+          "cadrage": "50% 30%",
+          "ajustement": "remplir"
+        }
+      ],
+      "avance": {
+        "grille": "a a | b c",
+        "lignes": "1.3fr 1fr"
+      }
+    },
+    {
+      "titre": "Monopoly",
+      "id": "monopoly",
+      "type": "Packaging · Jeu de plateau",
+      "annee": "2024",
+      "couleur": "#5E9E3A",
+      "texte": "Monopoly × Minecraft : chaque case du plateau réinventée dans l’univers du jeu sans perdre les codes de l’original, et une boîte épurée pensée pour le rayon.",
+      "outils": [],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "image",
+          "fichier": "/assets/img/monopoly-1.webp",
+          "ajustement": "contenir",
+          "fond": "#FFFFFF"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/monopoly-2.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "citation",
+          "texte": "Chaque case du plateau, réinventée bloc par bloc."
+        }
+      ],
+      "avance": {
+        "grille": "a b | c c",
+        "lignes": "1.5fr .7fr"
+      }
+    },
+    {
+      "titre": "Petit Prince",
+      "id": "petit-prince",
+      "type": "Packaging éco-conçu · Projet de groupe",
+      "annee": "2024",
+      "couleur": "#E6C23A",
+      "texte": "Un mouton en peluche dans un carton recyclé imprimé en bichromie. Les bénéfices vont à l’association Petit Prince, et la boîte ne se jette pas.",
+      "outils": [],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "image",
+          "fichier": "/assets/img/prince-1.webp",
+          "ajustement": "contenir",
+          "fond": "#FFFFFF"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/prince-2.webp",
+          "ajustement": "contenir",
+          "fond": "#FFFFFF"
+        },
+        {
+          "type": "citation",
+          "texte": "Une fois la peluche sortie, la boîte devient son trône."
+        }
+      ],
+      "avance": {
+        "grille": "a b | a c",
+        "lignes": "1.15fr 1fr"
+      }
+    },
+    {
+      "titre": "Logotypes",
+      "id": "logotypes",
+      "type": "Identité · Simplification et rebranding",
+      "annee": "2024",
+      "couleur": "#6B4A2E",
+      "texte": "Trois exercices de marque : Vincent Imprimeries, imprimerie industrielle de Tours ; UPS, simplifier un logo déjà simple ; Wikipédia, un flash rebranding.",
+      "outils": [],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "image",
+          "fichier": "/assets/img/logos-1.webp",
+          "cadrage": "50% 60%",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/logos-2.webp",
+          "cadrage": "100% 50%",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/logos-3.webp",
+          "ajustement": "contenir",
+          "fond": "#FFFFFF"
+        }
+      ],
+      "avance": {
+        "grille": "a a | b c",
+        "lignes": "1.15fr 1fr"
+      }
+    },
+    {
+      "titre": "In Situ",
+      "id": "in-situ",
+      "type": "Dépliant A3 · Exposition d’architecture",
+      "annee": "2024",
+      "couleur": "#1F5BD6",
+      "texte": "Pour la Maison de l’Architecture Centre-Val de Loire : le bleu et le trait blanc des plans d’architecte, dessinés sur le centre-ville de Tours.",
+      "outils": [],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "image",
+          "fichier": "/assets/img/insitu-1.webp",
+          "cadrage": "50% 35%",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/insitu-2.webp",
+          "ajustement": "contenir",
+          "fond": "#FFFFFF"
+        },
+        {
+          "type": "citation",
+          "texte": "Architecture, écologie et génie des lieux."
+        }
+      ],
+      "avance": {
+        "grille": "a a | b c",
+        "lignes": "1.1fr 1fr"
+      }
+    },
+    {
+      "titre": "Epsiloon",
+      "id": "epsiloon",
+      "type": "Couverture de magazine",
+      "annee": "2024",
+      "couleur": "#7CC6E6",
+      "texte": "Une couverture pour Epsiloon sur l’ethnoscience : un fœtus nourri par une liane, le lien entre l’humain et la nature.",
+      "outils": [
+        "Ps"
+      ],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "image",
+          "fichier": "/assets/img/epsiloon-1.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "citation",
+          "texte": "Ethnoscience : ce qui relie l’humain au vivant."
+        }
+      ],
+      "avance": {
+        "grille": "a | b",
+        "lignes": "1.7fr 1fr"
+      }
+    }
+  ]
+}
