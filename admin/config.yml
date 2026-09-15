@@ -1,7 +1,7 @@
 # Panneau d'administration : https://oui-marcelin.netlify.app/admin
 backend:
   name: github
-  repo: ouimarcelin/oui-marcelin
+  repo: ouimarcelin/Book-Oui.Marcelin
   branch: main
   base_url: https://api.netlify.com
   auth_endpoint: auth
