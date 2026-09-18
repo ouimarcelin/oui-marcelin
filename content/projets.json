@@ -202,13 +202,12 @@
         },
         {
           "type": "image",
-          "fichier": "/assets/img/switchboy-2.webp",
+          "fichier": "/assets/img/switchboy-desk-1.webp",
           "ajustement": "remplir"
         },
         {
           "type": "image",
-          "fichier": "/assets/img/switchboy-1.webp",
-          "cadrage": "55% 50%",
+          "fichier": "/assets/img/switchboy-desk-2.webp",
           "ajustement": "remplir"
         }
       ],
