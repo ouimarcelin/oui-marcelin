@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F5F5F7">
+<title>Chiffrage des travaux — Les Ateliers Bertin</title>
+<meta name="description" content="Estimation des dépenses de restauration du Pavillon Bertin, de la Maison des Jeux, de la chapelle et du square : grandes catégories, postes détaillés, fourchettes basse et haute.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="chiffrage.css">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+</head>
+<body>
+<div class="page">
+
+<header class="site-header">
+  <nav class="site-nav container container--wide" aria-label="Navigation principale">
+    <a class="brand" href="index.html">
+      <svg class="brand-mark" viewBox="0 0 550.47 550.47" aria-hidden="true"><path d="M200.71,469.57h-119.8v-119.8c0-31.15,25.25-56.39,56.39-56.39h32.08c3.8,22.4,14.53,42.42,29.92,57.8,15.39,15.39,35.41,26.12,57.8,29.92v32.08c0,31.15-25.25,56.39-56.39,56.39Z"/><path d="M291.74,258.73c4.41,4.41,6.830,10.27,6.83,16.51s-2.43,12.1-6.83,16.5-10.27,6.84-16.51,6.84-12.09-2.43-16.5-6.84-6.84-10.27-6.84-16.5,2.43-12.1,6.84-16.51,10.27-6.84,16.5-6.84,12.1,2.43,16.51,6.84Z"/><path d="M352.38,257.1c-3.41-14.61-10.86-27.64-21.12-37.9-10.25-10.25-23.290-17.7-37.89-21.11-5.82-1.38-11.9-2.1-18.14-2.1s-12.31.72-18.13,2.1c-29.21,6.83-52.19,29.81-59.02,59.02-1.37,5.82-2.09,11.89-2.09,18.13s.72,12.31,2.09,18.13c3.42,14.61,10.87,27.65,21.12,37.9s23.29,17.7,37.9,21.11c5.82,1.38,11.9,2.1,18.13,2.1s12.31-.72,18.13-2.09c14.61-3.41,27.65-10.87,37.9-21.12,10.26-10.25,17.71-23.3,21.13-37.91,1.37-5.81,2.09-11.89,2.09-18.12s-.73-12.32-2.1-18.14ZM309.41,309.42c-9.13,9.13-21.26,14.16-34.18,14.16s-25.05-5.03-34.18-14.16-14.16-21.27-14.16-34.18,5.03-25.06,14.16-34.19,21.27-14.16,34.18-14.16,25.05,5.03,34.18,14.16c9.14,9.13,14.16,21.27,14.16,34.19s-5.02,25.05-14.16,34.18Z"/><path d="M169.38,257.1h-32.08c-31.15,0-56.39-25.25-56.39-56.39v-119.8h119.8c31.15,0,56.39,25.25,56.39,56.39v32.08c-44.78,7.6-80.12,42.94-87.72,87.72Z"/><path d="M413.17,257.1h-32.08c-3.8-22.4-14.53-42.42-29.920-57.8-15.39-15.39-35.41-26.12-57.8-29.92v-32.08c0-31.15,25.25-56.39,56.39-56.390h119.8v119.8c0,31.15-25.25,56.39-56.39,56.39Z"/><path d="M469.1,470.03l-119.8-.75c-31.14-.2-56.23-25.6-56.04-56.75l.2-32.08c22.41-3.66,42.51-14.27,57.99-29.55,15.48-15.29,26.34-35.25,30.28-57.61l32.08.2c31.14.2,56.23,25.6,56.04,56.75l-.75,119.8Z"/><rect x="40.76" y="40.76" width="468.94" height="468.94" fill="none" stroke="currentColor" stroke-width="31"/></svg>
+      Ateliers Bertin
+    </a>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="plan.html">Plan du site</a></li>
+      <li><a href="chiffrage.html">Chiffrage</a></li>
+      <li><a href="pavillon-bertin.html">Prévisionnel</a></li>
+      <li><a href="financements.html">Financements</a></li>
+      <li><a href="devis.html">Devis</a></li>
+    </ul>
+    <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span></button>
+  </nav>
+</header>
+
+<nav class="subnav" aria-label="Sections du chiffrage">
+  <div class="container container--wide subnav-inner">
+    <span class="subnav-title">Chiffrage</span>
+    <div class="subnav-links">
+      <a href="#synthese">Synthèse</a>
+      <a href="#detail">Détail</a>
+      <a href="#batiments">Bâtiments</a>
+      <a href="#hypotheses">Hypothèses</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow au">Travaux · estimation de septembre 2026</p>
+      <h1 class="title-1 au d1">Chiffrage des travaux</h1>
+      <p class="lead au d2">Ce que coûtera la restauration du Pavillon Bertin, de la Maison des Jeux, de la chapelle et du square&nbsp;: <span id="cat-count">douze catégories de dépenses</span>, détaillées poste par poste, avec une fourchette basse et une fourchette haute.</p>
+    </div>
+  </section>
+
+  <!-- SYNTHÈSE -->
+  <section class="block block--first" id="synthese">
+    <div class="container">
+      <div class="filters au d3" id="filters" role="group" aria-label="Choisir un bâtiment"></div>
+
+      <div class="kpis au d3">
+        <div class="kpi">
+          <p class="kpi-label">Fourchette basse</p>
+          <p class="kpi-value"><span id="kpi-low">—</span><span class="kpi-unit"> €</span></p>
+          <p class="kpi-hint">Tout se passe bien</p>
+        </div>
+        <div class="kpi">
+          <p class="kpi-label">Milieu de fourchette</p>
+          <p class="kpi-value"><span id="kpi-mid">—</span><span class="kpi-unit"> €</span></p>
+          <p class="kpi-hint">Simple repère entre les deux</p>
+        </div>
+        <div class="kpi">
+          <p class="kpi-label">Fourchette haute</p>
+          <p class="kpi-value"><span id="kpi-high">—</span><span class="kpi-unit"> €</span></p>
+          <p class="kpi-hint">Toutes les options prudentes</p>
+        </div>
+      </div>
+      <p class="kpi-note au d4"><span id="kpi-note">—</span> · hors taxes, prix 2026, hors achat du bâtiment</p>
+
+      <div class="card chart-card reveal">
+        <div class="chart-head">
+          <div>
+            <h2 class="card-title">Par grande catégorie</h2>
+            <p class="card-sub">Survolez une barre pour les montants, cliquez pour ouvrir le détail.</p>
+          </div>
+          <ul class="chart-legend">
+            <li><i class="sw sw-low"></i>Fourchette basse</li>
+            <li><i class="sw sw-ext"></i>Jusqu’à la fourchette haute</li>
+          </ul>
+        </div>
+        <div class="chart-body">
+          <div class="range-chart" id="chart"></div>
+          <div class="chart-tooltip" id="chart-tooltip" aria-hidden="true" hidden></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <h2 class="card-title">Ce qui fait bouger la fourchette</h2>
+        <p class="card-sub">Les six postes où l’écart entre basse et haute est le plus grand, hors honoraires et imprévus qui suivent les travaux. Les trancher tôt, c’est resserrer le budget.</p>
+        <ol class="drivers" id="drivers"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- DÉTAIL -->
+  <section class="block" id="detail">
+    <div class="container">
+      <header class="block-head">
+        <div>
+          <h2 class="title-2">Le détail, poste par poste</h2>
+          <p class="lead">Ouvrez une catégorie pour voir ce que couvre chaque dépense et sur quelle base elle est calculée. Touchez Modifier pour ajuster montants, postes et catégories.</p>
+        </div>
+        <div class="block-tools">
+          <p class="scope-label">Affichage&nbsp;: <strong id="table-scope">Tout le site</strong></p>
+          <p class="save-state" id="save-state" role="status" aria-live="polite" hidden></p>
+          <button class="btn btn-danger btn-sm" type="button" id="reset-data" data-label="Rétablir l’estimation d’origine" hidden>Rétablir l’estimation d’origine</button>
+          <button class="btn btn-neutral btn-sm" type="button" id="toggle-all">Tout déplier</button>
+          <button class="btn btn-neutral btn-sm" type="button" data-edit-toggle aria-pressed="false">Modifier</button>
+        </div>
+      </header>
+
+      <p class="note edit-note" id="edit-note" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>Chaque modification est enregistrée aussitôt et partagée avec tous ceux qui ouvrent le dossier. Un poste se chiffre en montants par bâtiment ou en pourcentage des travaux du bâtiment&nbsp;; les travaux sont la somme des catégories cochées «&nbsp;Compte dans les travaux&nbsp;».</span></p>
+
+      <div class="table-card">
+        <table class="cost-table" id="cost-table">
+          <caption class="visually-hidden">Chiffrage des travaux par catégorie et par poste, fourchettes basse et haute hors taxes</caption>
+          <thead>
+            <tr>
+              <th scope="col">Poste</th>
+              <th scope="col" class="num col-num">Basse</th>
+              <th scope="col" class="num col-num">Haute</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- BÂTIMENTS -->
+  <section class="block" id="batiments">
+    <div class="container">
+      <header class="block-head">
+        <div>
+          <h2 class="title-2">Bâtiment par bâtiment</h2>
+          <p class="lead">Le Pavillon concentre l’essentiel de la dépense. Choisissez un bâtiment pour filtrer toute la page.</p>
+        </div>
+        <div class="block-tools">
+          <button class="btn btn-neutral btn-sm" type="button" data-edit-toggle aria-pressed="false">Modifier</button>
+        </div>
+      </header>
+
+      <div class="table-card">
+        <table class="b-table">
+          <caption class="visually-hidden">Fourchettes de coût par bâtiment</caption>
+          <thead>
+            <tr>
+              <th scope="col">Bâtiment</th>
+              <th scope="col" class="num col-surface">Surface</th>
+              <th scope="col" class="num">Fourchette</th>
+              <th scope="col" class="num col-m2">Par m²</th>
+            </tr>
+          </thead>
+          <tbody id="buildings"></tbody>
+        </table>
+      </div>
+
+      <div class="compare reveal">
+        <div>
+          <p class="compare-label">Face au prévisionnel</p>
+          <p class="compare-body">Le prévisionnel retient <strong id="cmp-prev">550 000 €</strong> pour les phases 1 à 4 et la cour. Pour ce même périmètre (Pavillon, Maison des Jeux et square), les travaux seuls sont estimés de <strong id="cmp-works">—</strong>, et le coût complet de <strong id="cmp-total">—</strong>.</p>
+          <p class="compare-verdict" id="cmp-verdict"></p>
+        </div>
+        <a class="link" href="pavillon-bertin.html#travaux">Ajuster le prévisionnel <svg class="icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HYPOTHÈSES -->
+  <section class="block" id="hypotheses">
+    <div class="container">
+      <header class="block-head">
+        <div>
+          <h2 class="title-2">Hypothèses et limites</h2>
+          <p class="lead">Une estimation d’avant-projet&nbsp;: elle sert à cadrer le budget, pas à remplacer les devis.</p>
+        </div>
+        <div class="block-tools">
+          <button class="btn btn-neutral btn-sm" type="button" data-edit-toggle aria-pressed="false">Modifier</button>
+        </div>
+      </header>
+
+      <div class="facts-grid reveal" id="facts"></div>
+
+      <p class="note hyp-note"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>La fourchette basse suppose que tout se passe bien, la haute cumule toutes les options prudentes&nbsp;: la réalité se situe entre les deux. Pour la resserrer, commencer par le diagnostic de structure et le repérage amiante avant travaux, puis faire chiffrer un avant-projet par l’architecte et comparer les <a class="link" href="devis.html">devis</a>.</span></p>
+
+      <p class="sources">Sources&nbsp;: <a href="https://www.parthenay.fr/actualites/vente-appel-a-candidature-5890" target="_blank" rel="noopener noreferrer">cahier des charges, plans et diagnostics de la Ville de Parthenay</a> · <a href="https://radiogatine.fr/news/on-veut-creer-un-pole-d-artisanat-la-ville-vend-l-ensemble-bertin-au-vitrailliste-cyril-deschamps-4758" target="_blank" rel="noopener noreferrer">Radio Gâtine, vente de l’ensemble Bertin</a> · <a href="https://radiogatine.fr/news/c-est-un-coup-d-accelerateur-pour-moi-cyril-deschamps-remporte-les-20-000-euros-du-prix-sesame-4756" target="_blank" rel="noopener noreferrer">Radio Gâtine, prix Sésame</a> · guides de prix 2025–2026 (couverture, ravalement, désamiantage, honoraires, assurance dommages-ouvrage, indice BT01), détaillés dans NOTES-chiffrage.md.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container container--wide">
+    <p class="footer-note">Dossier de projet interactif. Les montants présentés sont des estimations indicatives, à valider avec un architecte, un économiste de la construction et un expert-comptable.</p>
+    <div class="footer-bottom">
+      <p>Les Ateliers Bertin · SCI Robin-Deschamps · 14 &amp; 16 rue de la Citadelle, 79200 Parthenay</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="plan.html">Plan du site</a></li>
+        <li><a href="chiffrage.html">Chiffrage</a></li>
+        <li><a href="pavillon-bertin.html">Prévisionnel</a></li>
+        <li><a href="financements.html">Financements</a></li>
+        <li><a href="devis.html">Devis</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="db.js"></script>
+<script src="global.js"></script>
+<script src="chiffrage.js"></script>
+</body>
+</html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F5F5F7">
+<title>Prévisionnel financier — Les Ateliers Bertin</title>
+<meta name="description" content="Simulation financière interactive de la réhabilitation du Pavillon Bertin : recettes, charges, occupation, travaux et plan de financement.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="pavillon-bertin.css">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+</head>
+<body>
+<div class="page">
+
+<header class="site-header">
+  <nav class="site-nav container container--wide" aria-label="Navigation principale">
+    <a class="brand" href="index.html">
+      <svg class="brand-mark" viewBox="0 0 550.47 550.47" aria-hidden="true"><path d="M200.71,469.57h-119.8v-119.8c0-31.15,25.25-56.39,56.39-56.39h32.08c3.8,22.4,14.53,42.42,29.92,57.8,15.39,15.39,35.41,26.12,57.8,29.92v32.08c0,31.15-25.25,56.39-56.39,56.39Z"/><path d="M291.74,258.73c4.41,4.41,6.830,10.27,6.83,16.51s-2.43,12.1-6.83,16.5-10.27,6.84-16.51,6.84-12.09-2.43-16.5-6.84-6.84-10.27-6.84-16.5,2.43-12.1,6.84-16.51,10.27-6.84,16.5-6.84,12.1,2.43,16.51,6.84Z"/><path d="M352.38,257.1c-3.41-14.61-10.86-27.64-21.12-37.9-10.25-10.25-23.290-17.7-37.89-21.11-5.82-1.38-11.9-2.1-18.14-2.1s-12.31.72-18.13,2.1c-29.21,6.83-52.19,29.81-59.02,59.02-1.37,5.82-2.09,11.89-2.09,18.13s.72,12.31,2.09,18.13c3.42,14.61,10.87,27.65,21.12,37.9s23.29,17.7,37.9,21.11c5.82,1.38,11.9,2.1,18.13,2.1s12.31-.72,18.13-2.09c14.61-3.41,27.65-10.87,37.9-21.12,10.26-10.25,17.71-23.3,21.13-37.91,1.37-5.81,2.09-11.89,2.09-18.12s-.73-12.32-2.1-18.14ZM309.41,309.42c-9.13,9.13-21.26,14.16-34.18,14.16s-25.05-5.03-34.18-14.16-14.16-21.27-14.16-34.18,5.03-25.06,14.16-34.19,21.27-14.16,34.18-14.16,25.05,5.03,34.18,14.16c9.14,9.13,14.16,21.27,14.16,34.19s-5.02,25.05-14.16,34.18Z"/><path d="M169.38,257.1h-32.08c-31.15,0-56.39-25.25-56.39-56.39v-119.8h119.8c31.15,0,56.39,25.25,56.39,56.39v32.08c-44.78,7.6-80.12,42.94-87.72,87.72Z"/><path d="M413.17,257.1h-32.08c-3.8-22.4-14.53-42.42-29.920-57.8-15.39-15.39-35.41-26.12-57.8-29.92v-32.08c0-31.15,25.25-56.39,56.39-56.390h119.8v119.8c0,31.15-25.25,56.39-56.39,56.39Z"/><path d="M469.1,470.03l-119.8-.75c-31.14-.2-56.23-25.6-56.04-56.75l.2-32.08c22.41-3.66,42.51-14.27,57.99-29.55,15.48-15.29,26.34-35.25,30.28-57.61l32.08.2c31.14.2,56.23,25.6,56.04,56.75l-.75,119.8Z"/><rect x="40.76" y="40.76" width="468.94" height="468.94" fill="none" stroke="currentColor" stroke-width="31"/></svg>
+      Ateliers Bertin
+    </a>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="plan.html">Plan du site</a></li>
+      <li><a href="chiffrage.html">Chiffrage</a></li>
+      <li><a href="pavillon-bertin.html">Prévisionnel</a></li>
+      <li><a href="financements.html">Financements</a></li>
+      <li><a href="devis.html">Devis</a></li>
+    </ul>
+    <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span></button>
+  </nav>
+</header>
+
+<nav class="subnav" aria-label="Sections du prévisionnel">
+  <div class="container container--wide subnav-inner">
+    <span class="subnav-title">Prévisionnel</span>
+    <div class="subnav-links">
+      <a href="#recettes">Recettes</a>
+      <a href="#charges">Charges</a>
+      <a href="#occupation">Occupation</a>
+      <a href="#travaux">Travaux</a>
+      <a href="#financement">Financement</a>
+      <a href="#conclusion">Conclusion</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow au">Dossier financier prévisionnel · 2026–2028</p>
+      <h1 class="title-1 au d1">Réhabiliter un patrimoine vivant.</h1>
+      <p class="lead au d2">Une simulation entièrement modifiable. Changez une hypothèse&nbsp;: tous les résultats se recalculent instantanément.</p>
+
+      <div class="kpis au d3">
+        <div class="kpi">
+          <p class="kpi-label">Recettes annuelles</p>
+          <p class="kpi-value"><span id="kpi-r">—</span><span class="kpi-unit"> €</span></p>
+        </div>
+        <div class="kpi is-result">
+          <p class="kpi-label">Résultat estimé</p>
+          <p class="kpi-value"><span id="kpi-res">—</span><span class="kpi-unit"> €</span></p>
+        </div>
+        <div class="kpi">
+          <p class="kpi-label">Investissement total</p>
+          <p class="kpi-value"><span id="kpi-inv">—</span><span class="kpi-unit"> €</span></p>
+        </div>
+        <div class="kpi">
+          <p class="kpi-label">Taux d'occupation moyen</p>
+          <p class="kpi-value"><span id="kpi-t">—</span><span class="kpi-unit"> %</span></p>
+        </div>
+      </div>
+
+      <ul class="facts au d4">
+        <li><strong>4 phases</strong> de travaux planifiées</li>
+        <li><strong>18–24 mois</strong> de chantier estimé</li>
+        <li><strong>5 sources</strong> de revenus</li>
+        <li><strong>200 000 visiteurs</strong> par an au FLIP de Parthenay</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 01 · RECETTES -->
+  <section class="block" id="recettes">
+    <div class="container">
+      <header class="block-head">
+        <div>
+          <h2 class="title-2">Recettes annuelles</h2>
+          <p class="lead">Ouvrez une ligne pour ajuster ses hypothèses. Les totaux se mettent à jour instantanément.</p>
+        </div>
+        <p class="hint"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>Chiffres modifiables</p>
+      </header>
+
+      <div class="group">
+        <div class="acc-item scroll-reveal">
+          <button class="acc-trig" type="button" aria-expanded="false" onclick="toggle(this.parentElement)">
+            <span class="acc-ico" style="--tone:var(--accent)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l8.5-8.5"/><path d="M10.5 6.5l4-3 6 6-3 4z"/></svg></span>
+            <span class="acc-text"><span class="acc-ttl">Ateliers artisans d'art</span><span class="acc-sub">Loyers mensuels · occupation permanente</span></span>
+            <span class="acc-amt pos" id="d-at">— €/an</span>
+            <svg class="acc-chev icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="acc-body"><div class="acc-in"><div class="acc-content">
+            <p class="fmla"><span class="fmla-l">Formule</span><span class="fmla-t">Σ (Loyer/mois de chaque atelier) × 12 mois</span></p>
+            <table class="ct"><thead><tr><th>Atelier</th><th>Loyer mensuel</th><th class="r">Par an</th></tr></thead><tbody>
+              <tr><td>Atelier 1</td><td><input class="editable" id="lr-at1" type="number" value="400" min="0" aria-label="Loyer mensuel atelier 1"> €/mois</td><td class="r" id="c-at1">—</td></tr>
+              <tr><td>Atelier 2</td><td><input class="editable" id="lr-at2" type="number" value="400" min="0" aria-label="Loyer mensuel atelier 2"> €/mois</td><td class="r" id="c-at2">—</td></tr>
+              <tr><td>Atelier 3</td><td><input class="editable" id="lr-at3" type="number" value="400" min="0" aria-label="Loyer mensuel atelier 3"> €/mois</td><td class="r" id="c-at3">—</td></tr>
+              <tr><td>Atelier 4</td><td><input class="editable" id="lr-at4" type="number" value="400" min="0" aria-label="Loyer mensuel atelier 4"> €/mois</td><td class="r" id="c-at4">—</td></tr>
+              <tr><td>Atelier 5</td><td><input class="editable" id="lr-at5" type="number" value="400" min="0" aria-label="Loyer mensuel atelier 5"> €/mois</td><td class="r" id="c-at5">—</td></tr>
+              <tr class="tot"><td>Total annuel</td><td></td><td class="r sage" id="tt-at">—</td></tr>
+            </tbody></table>
+            <p class="note"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>Loyer volontairement bas (marché Niort : 700–900 €/mois) pour favoriser l'installation durable des artisans.</span></p>
+          </div></div></div>
+        </div>
+
+        <div class="acc-item scroll-reveal">
+          <button class="acc-trig" type="button" aria-expanded="false" onclick="toggle(this.parentElement)">
+            <span class="acc-ico" style="--tone:var(--cat-etat)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18V7"/><path d="M3 14h18v4"/><path d="M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.5"/></svg></span>
+            <span class="acc-text"><span class="acc-ttl">Auberge — lits à la nuitée</span><span class="acc-sub">Calculé depuis l'analyse d'occupation</span></span>
+            <span class="acc-amt pos" id="d-au">— €/an</span>
+            <svg class="acc-chev icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="acc-body"><div class="acc-in"><div class="acc-content">
+            <p class="fmla"><span class="fmla-l">Formule</span><span class="fmla-t">Σ (lits occupés/mois × 30 j × prix/nuit) — voir Occupation</span></p>
+            <table class="ct"><thead><tr><th>Paramètre</th><th>Valeur</th><th class="r">Impact</th></tr></thead><tbody>
+              <tr><td>Nombre de lits total</td><td><input class="editable" id="nb-li" type="number" value="15" min="1" max="100" aria-label="Nombre de lits"></td><td class="r">Plafond d'occupation</td></tr>
+              <tr><td>Prix nuit / lit</td><td><input class="editable" id="px-nu" type="number" value="18" min="0" aria-label="Prix par nuit et par lit"> €</td><td class="r" id="c-au-px">—</td></tr>
+              <tr class="tot"><td>Total annuel estimé</td><td></td><td class="r sage" id="tt-au">—</td></tr>
+            </tbody></table>
+          </div></div></div>
+        </div>
+
+        <div class="acc-item scroll-reveal">
+          <button class="acc-trig" type="button" aria-expanded="false" onclick="toggle(this.parentElement)">
+            <span class="acc-ico" style="--tone:var(--cat-region)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg></span>
+            <span class="acc-text"><span class="acc-ttl">Appartements à l'année</span><span class="acc-sub">Loyers du marché local · bail annuel</span></span>
+            <span class="acc-amt pos" id="d-ap">— €/an</span>
+            <svg class="acc-chev icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="acc-body"><div class="acc-in"><div class="acc-content">
+            <table class="ct"><thead><tr><th>Paramètre</th><th>Valeur</th><th class="r">Résultat</th></tr></thead><tbody>
+              <tr><td>Nombre d'appartements</td><td><input class="editable" id="nb-ap" type="number" value="2" min="0" max="20" aria-label="Nombre d'appartements"></td><td class="r" id="c-ap-nb">—</td></tr>
+              <tr><td>Loyer mensuel / appartement</td><td><input class="editable" id="lr-ap" type="number" value="600" min="0" aria-label="Loyer mensuel par appartement"> €</td><td class="r" id="c-ap-lr">—</td></tr>
+              <tr class="tot"><td>Total annuel</td><td></td><td class="r sage" id="tt-ap">—</td></tr>
+            </tbody></table>
+          </div></div></div>
+        </div>
+
+        <div class="acc-item scroll-reveal">
+          <button class="acc-trig" type="button" aria-expanded="false" onclick="toggle(this.parentElement)">
+            <span class="acc-ico" style="--tone:var(--cat-fiscal)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v8"/></svg></span>
+            <span class="acc-text"><span class="acc-ttl">Stockage &amp; garage vélos</span><span class="acc-sub">Box artisans et stationnement sécurisé</span></span>
+            <span class="acc-amt pos" id="d-st">— €/an</span>
+            <svg class="acc-chev icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="acc-body"><div class="acc-in"><div class="acc-content">
+            <table class="ct"><tbody>
+              <tr><td>Forfait mensuel stockage</td><td><input class="editable" id="st-mn" type="number" value="350" min="0" aria-label="Forfait mensuel de stockage"> €</td><td class="r" id="c-st">—</td></tr>
+              <tr class="tot"><td>Total annuel</td><td></td><td class="r sage" id="tt-st">—</td></tr>
+            </tbody></table>
+          </div></div></div>
+        </div>
+
+        <div class="acc-item scroll-reveal">
+          <button class="acc-trig" type="button" aria-expanded="false" onclick="toggle(this.parentElement)">
+            <span class="acc-ico" style="--tone:var(--cat-europe)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span>
+            <span class="acc-text"><span class="acc-ttl">Événements &amp; expo-vente</span><span class="acc-sub">Location de la cour, vernissages, marchés</span></span>
+            <span class="acc-amt pos" id="d-ev">— €/an</span>
+            <svg class="acc-chev icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="acc-body"><div class="acc-in"><div class="acc-content">
+            <table class="ct"><tbody>
+              <tr><td>Nombre d'événements / an</td><td><input class="editable" id="nb-ev" type="number" value="6" min="0" max="52" aria-label="Nombre d'événements par an"></td><td class="r" id="c-ev-nb">—</td></tr>
+              <tr><td>Recette moyenne / événement</td><td><input class="editable" id="px-ev" type="number" value="1000" min="0" aria-label="Recette moyenne par événement"> €</td><td class="r" id="c-ev-px">—</td></tr>
+              <tr class="tot"><td>Total annuel</td><td></td><td class="r sage" id="tt-ev">—</td></tr>
+            </tbody></table>
+          </div></div></div>
+        </div>
+
+        <div class="group-total">
+          <span class="group-total-label">Total recettes annuelles</span>
+          <strong class="group-total-value pos" id="gtr">— €</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · CHARGES -->
+  <section class="block" id="charges">
+    <div class="container">
+      <header class="block-head">
+        <div>
+          <h2 class="title-2">Charges annuelles</h2>
+          <p class="lead">Emprunt, exploitation et frais fixes. Le résultat net se calcule en bas de liste.</p>
+        </div>
+        <p class="hint"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>Chiffres modifiables</p>
+      </header>
+
+      <div class="group">
+        <div class="acc-item scroll-reveal">
+          <button class="acc-trig" type="button" aria-expanded="false" onclick="toggle(this.parentElement)">
+            <span class="acc-ico" style="--tone:var(--cat-dept)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-5 9 5"/><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg></span>
+            <span class="acc-text"><span class="acc-ttl">Remboursement de l'emprunt</span><span class="acc-sub">Annuité constante · calcul automatique</span></span>
+            <span class="acc-amt neg" id="d-em">— €/an</span>
+            <svg class="acc-chev icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="acc-body"><div class="acc-in"><div class="acc-content">
+            <p class="fmla"><span class="fmla-l">Annuité constante</span><span class="fmla-t">M = K × [i(1+i)ⁿ] / [(1+i)ⁿ − 1]</span></p>
+            <table class="ct"><tbody>
+              <tr><td>Capital emprunté</td><td><input class="editable" id="cap" type="number" value="300000" min="0" aria-label="Capital emprunté"> €</td><td class="r" id="c-cap">—</td></tr>
+              <tr><td>Taux annuel</td><td><input class="editable" id="tx-em" type="number" value="3.5" min="0" max="20" step="0.1" aria-label="Taux annuel"> %</td><td class="r" id="c-tx">—</td></tr>
+              <tr><td>Durée</td><td><input class="editable" id="du-em" type="number" value="20" min="1" max="30" aria-label="Durée en années"> ans</td><td class="r" id="c-du">—</td></tr>
+              <tr><td>Mensualité calculée</td><td></td><td class="r" id="c-men">— €/mois</td></tr>
+              <tr class="tot"><td>Annuité totale</td><td></td><td class="r terra" id="tt-em">—</td></tr>
+            </tbody></table>
+          </div></div></div>
+        </div>
+
+        <div class="acc-item scroll-reveal">
+          <button class="acc-trig" type="button" aria-expanded="false" onclick="toggle(this.parentElement)">
+            <span class="acc-ico" style="--tone:var(--cat-region)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/><path d="M18 15l.8 1.7 1.7.8-1.7.8L18 20l-.8-1.7-1.7-.8 1.7-.8z"/></svg></span>
+            <span class="acc-text"><span class="acc-ttl">Gestion de l'auberge</span><span class="acc-sub">Blanchisserie, nettoyage, consommables</span></span>
+            <span class="acc-amt neg" id="d-ge">— €/an</span>
+            <svg class="acc-chev icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="acc-body"><div class="acc-in"><div class="acc-content">
+            <table class="ct"><tbody>
+              <tr><td>Taux de charges (% du CA auberge)</td><td><input class="editable" id="tx-ge" type="number" value="30" min="0" max="100" aria-label="Taux de charges de l'auberge"> %</td><td class="r" id="c-ge">—</td></tr>
+              <tr class="tot"><td>Total annuel</td><td></td><td class="r terra" id="tt-ge">—</td></tr>
+            </tbody></table>
+            <p class="note"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>Ratio de 30 % standard en auberge à accès autonome avec blanchisserie externalisée.</span></p>
+          </div></div></div>
+        </div>
+
+        <div class="acc-item scroll-reveal">
+          <button class="acc-trig" type="button" aria-expanded="false" onclick="toggle(this.parentElement)">
+            <span class="acc-ico" style="--tone:var(--warning)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3L5 13h6l-1 8 8-10h-6z"/></svg></span>
+            <span class="acc-text"><span class="acc-ttl">Fluides &amp; énergie</span><span class="acc-sub">Eau, électricité, chauffage des parties communes</span></span>
+            <span class="acc-amt neg" id="d-fl">— €/an</span>
+            <svg class="acc-chev icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="acc-body"><div class="acc-in"><div class="acc-content">
+            <table class="ct"><tbody>
+              <tr><td>Forfait mensuel fluides</td><td><input class="editable" id="fl-mn" type="number" value="600" min="0" aria-label="Forfait mensuel fluides"> €</td><td class="r" id="c-fl">—</td></tr>
+              <tr class="tot"><td>Total annuel</td><td></td><td class="r terra" id="tt-fl">—</td></tr>
+            </tbody></table>
+          </div></div></div>
+        </div>
+
+        <div class="acc-item scroll-reveal">
+          <button class="acc-trig" type="button" aria-expanded="false" onclick="toggle(this.parentElement)">
+            <span class="acc-ico" style="--tone:var(--cat-fiscal)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+            <span class="acc-text"><span class="acc-ttl">Assurances, entretien &amp; administration</span><span class="acc-sub">Multirisque, provisions, comptabilité</span></span>
+            <span class="acc-amt neg" id="d-as">— €/an</span>
+            <svg class="acc-chev icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="acc-body"><div class="acc-in"><div class="acc-content">
+            <table class="ct"><tbody>
+              <tr><td>Assurance mensuelle</td><td><input class="editable" id="as-mn" type="number" value="350" min="0" aria-label="Assurance mensuelle"> €</td><td class="r" id="c-as">—</td></tr>
+              <tr><td>Entretien mensuel</td><td><input class="editable" id="en-mn" type="number" value="400" min="0" aria-label="Entretien mensuel"> €</td><td class="r" id="c-en">—</td></tr>
+              <tr><td>Comptabilité mensuelle</td><td><input class="editable" id="co-mn" type="number" value="150" min="0" aria-label="Comptabilité mensuelle"> €</td><td class="r" id="c-co">—</td></tr>
+              <tr class="tot"><td>Total annuel</td><td></td><td class="r terra" id="tt-as">—</td></tr>
+            </tbody></table>
+          </div></div></div>
+        </div>
+
+        <div class="group-total">
+          <span class="group-total-label">Total charges annuelles</span>
+          <strong class="group-total-value" id="gtc">— €</strong>
+        </div>
+      </div>
+
+      <div class="res-band">
+        <div>
+          <p class="res-l">Résultat net annuel estimé</p>
+          <p class="res-f" id="f-res">—</p>
+        </div>
+        <p class="res-v pos" id="g-res">— €</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · OCCUPATION -->
+  <section class="block" id="occupation">
+    <div class="container">
+      <header class="block-head">
+        <div>
+          <h2 class="title-2">Occupation mensuelle</h2>
+          <p class="lead">Ajustez les hypothèses de fréquentation. Le graphique et le chiffre d'affaires de l'auberge suivent.</p>
+        </div>
+        <p class="hint"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>Flux modifiables</p>
+      </header>
+
+      <div class="occ-grid">
+        <label class="occ-card scroll-reveal">
+          <span class="occ-label"><i class="sw sw-velo"></i>Vélo Francette</span>
+          <span class="occ-sub">Pic de saison, lits par nuit</span>
+          <input class="editable" id="oc-cy" type="number" value="3" min="0">
+        </label>
+        <label class="occ-card scroll-reveal">
+          <span class="occ-label"><i class="sw sw-pelerins"></i>Compostelle</span>
+          <span class="occ-sub">Saison, lits par nuit</span>
+          <input class="editable" id="oc-pe" type="number" value="1" min="0">
+        </label>
+        <label class="occ-card scroll-reveal">
+          <span class="occ-label"><i class="sw sw-tourisme"></i>Tourisme &amp; ateliers</span>
+          <span class="occ-sub">Base annuelle, lits par nuit</span>
+          <input class="editable" id="oc-to" type="number" value="3" min="0">
+        </label>
+        <label class="occ-card scroll-reveal">
+          <span class="occ-label"><i class="sw sw-flip"></i>FLIP en juillet</span>
+          <span class="occ-sub">Lits supplémentaires</span>
+          <input class="editable" id="oc-fl" type="number" value="6" min="0">
+        </label>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3 class="chart-title">Lits occupés par mois</h3>
+          <span class="chart-cap">Plafond : <span id="pla-v">15</span> lits</span>
+        </div>
+        <div class="chart-area">
+          <div class="mbars" id="bars" role="img" aria-label="Lits occupés par mois"></div>
+        </div>
+        <ul class="chart-leg">
+          <li><i class="sw sw-tourisme"></i>Tourisme &amp; ateliers</li>
+          <li><i class="sw sw-pelerins"></i>Compostelle</li>
+          <li><i class="sw sw-velo"></i>Vélo Francette</li>
+          <li><i class="sw sw-flip"></i>FLIP</li>
+        </ul>
+        <div class="chart-foot">
+          <span>Taux annuel moyen <strong id="tx-occ">—</strong></span>
+          <span>CA auberge estimé <strong class="pos" id="ca-occ">—</strong></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · TRAVAUX -->
+  <section class="block" id="travaux">
+    <div class="container">
+      <header class="block-head">
+        <div>
+          <h2 class="title-2">Phasage des travaux</h2>
+          <p class="lead">Quatre phases et l'aménagement de la cour, pour une ouverture progressive des espaces.</p>
+        </div>
+        <p class="hint"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>Coûts modifiables</p>
+      </header>
+
+      <div class="group">
+        <ol class="phases">
+          <li class="phase scroll-reveal">
+            <span class="phase-badge">P1</span>
+            <div class="phase-main">
+              <h3 class="phase-title">Maison des Jeux — RDC</h3>
+              <p class="phase-desc">Peu d'interventions. Premier artisan et salle d'exposition dès les premiers mois.</p>
+              <span class="phase-dur"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>2 à 3 mois</span>
+            </div>
+            <label class="phase-cost"><input class="editable large" id="ph1" type="number" value="30000" min="0" aria-label="Coût de la phase 1"> €</label>
+          </li>
+          <li class="phase scroll-reveal">
+            <span class="phase-badge">P2</span>
+            <div class="phase-main">
+              <h3 class="phase-title">Cave — stockage &amp; vélos</h3>
+              <p class="phase-desc">Assainissement, ventilation, box sécurisés et garage à vélos (label Accueil Vélo).</p>
+              <span class="phase-dur"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>3 à 4 mois</span>
+            </div>
+            <label class="phase-cost"><input class="editable large" id="ph2" type="number" value="40000" min="0" aria-label="Coût de la phase 2"> €</label>
+          </li>
+          <li class="phase scroll-reveal">
+            <span class="phase-badge">P3</span>
+            <div class="phase-main">
+              <h3 class="phase-title">Ateliers RDC — Pavillon Bertin</h3>
+              <p class="phase-desc">Quatre à cinq ateliers lumineux, modulables, équipés en eau et en électricité renforcée.</p>
+              <span class="phase-dur"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>4 à 5 mois</span>
+            </div>
+            <label class="phase-cost"><input class="editable large" id="ph3" type="number" value="120000" min="0" aria-label="Coût de la phase 3"> €</label>
+          </li>
+          <li class="phase scroll-reveal">
+            <span class="phase-badge">P4</span>
+            <div class="phase-main">
+              <h3 class="phase-title">Auberge &amp; appartements</h3>
+              <p class="phase-desc">Auberge au premier étage, appartements dans les combles. Réseaux mutualisés.</p>
+              <span class="phase-dur"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>6 à 8 mois</span>
+            </div>
+            <label class="phase-cost"><input class="editable large" id="ph4" type="number" value="300000" min="0" aria-label="Coût de la phase 4"> €</label>
+          </li>
+          <li class="phase is-court scroll-reveal">
+            <span class="phase-badge" aria-label="Cour">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10.5a7 7 0 0 1 14 0V20"/><path d="M3 20h18"/></svg>
+            </span>
+            <div class="phase-main">
+              <h3 class="phase-title">Square Bertin — la cour</h3>
+              <p class="phase-desc">Murs, portails, mobilier, totems historiques, horloge ancienne.</p>
+              <span class="phase-dur"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>2 à 3 mois</span>
+            </div>
+            <label class="phase-cost"><input class="editable large" id="ph5" type="number" value="60000" min="0" aria-label="Coût de l'aménagement de la cour"> €</label>
+          </li>
+        </ol>
+
+        <div class="group-total">
+          <span class="group-total-label">Investissement total travaux<span class="group-total-sub">Phases 1 à 4 et cour</span></span>
+          <strong class="group-total-value" id="tt-tr">— €</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · FINANCEMENT -->
+  <section class="block" id="financement">
+    <div class="container">
+      <header class="block-head">
+        <div>
+          <h2 class="title-2">Plan de financement</h2>
+          <p class="lead">Répartition des ressources face au budget de travaux. <a class="link" href="financements.html">Explorer les aides <svg class="icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a></p>
+        </div>
+        <p class="hint"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>Montants modifiables</p>
+      </header>
+
+      <div class="fin-grid">
+        <div class="fin-card scroll-reveal" style="--tone:var(--positive)">
+          <p class="fin-label"><i class="sw"></i>Autofinancement (apport)</p>
+          <label class="fin-input"><input class="editable large" id="fn-ap" type="number" value="100000" min="0" aria-label="Autofinancement"> €</label>
+          <div class="fin-bar"><div class="fin-fill" id="fb-ap"></div></div>
+          <p class="fin-note" id="fp-ap">—</p>
+        </div>
+        <div class="fin-card scroll-reveal" style="--tone:var(--accent)">
+          <p class="fin-label"><i class="sw"></i>Emprunt bancaire</p>
+          <label class="fin-input"><input class="editable large" id="fn-em" type="number" value="300000" min="0" aria-label="Emprunt bancaire"> €</label>
+          <div class="fin-bar"><div class="fin-fill" id="fb-em"></div></div>
+          <p class="fin-note" id="fp-em">—</p>
+        </div>
+        <div class="fin-card scroll-reveal" style="--tone:var(--cat-etat)">
+          <p class="fin-label"><i class="sw"></i>Subventions publiques</p>
+          <label class="fin-input"><input class="editable large" id="fn-su" type="number" value="0" min="0" aria-label="Subventions publiques"> €</label>
+          <div class="fin-bar"><div class="fin-fill" id="fb-su"></div></div>
+          <p class="fin-note" id="fp-su">—</p>
+        </div>
+        <div class="fin-card scroll-reveal" style="--tone:var(--cat-europe)">
+          <p class="fin-label"><i class="sw"></i>Fondation du Patrimoine &amp; autres</p>
+          <label class="fin-input"><input class="editable large" id="fn-fo" type="number" value="0" min="0" aria-label="Fondation du Patrimoine et autres"> €</label>
+          <div class="fin-bar"><div class="fin-fill" id="fb-fo"></div></div>
+          <p class="fin-note" id="fp-fo">—</p>
+        </div>
+      </div>
+
+      <div class="group group-solo">
+        <div class="group-total">
+          <span class="group-total-label">Total financements mobilisés<span class="group-total-sub" id="fn-solde">—</span></span>
+          <strong class="group-total-value" id="tt-fn">— €</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · CONCLUSION -->
+  <section class="block" id="conclusion">
+    <div class="container">
+      <header class="block-head">
+        <div>
+          <h2 class="title-2">Conclusion financière</h2>
+          <p class="lead">Chaque montant reprend le résultat d'une section précédente. Modifiez une hypothèse plus haut&nbsp;: la conclusion suit.</p>
+        </div>
+      </header>
+
+      <div class="group">
+        <div class="cc-step">
+          <div class="cc-head">
+            <span class="cc-num">1</span>
+            <div>
+              <h3 class="cc-title">Ce qu'il reste à emprunter</h3>
+              <p class="cc-desc">Le coût des travaux, moins tout ce qui n'est pas remboursable.</p>
+            </div>
+          </div>
+          <ul class="cc-rows">
+            <li><span class="cc-op"></span><span class="cc-lbl">Investissement travaux<a class="cc-src" href="#travaux">Phasage des travaux</a></span><span class="cc-val" id="cc-tr">—</span></li>
+            <li><span class="cc-op">−</span><span class="cc-lbl">Subventions publiques<a class="cc-src" href="#financement">Plan de financement</a></span><span class="cc-val" id="cc-su">—</span></li>
+            <li><span class="cc-op">−</span><span class="cc-lbl">Fondation du Patrimoine &amp; autres<a class="cc-src" href="#financement">Plan de financement</a></span><span class="cc-val" id="cc-fo">—</span></li>
+            <li><span class="cc-op">−</span><span class="cc-lbl">Autofinancement<a class="cc-src" href="#financement">Plan de financement</a></span><span class="cc-val" id="cc-ap">—</span></li>
+            <li class="cc-tot"><span class="cc-op">=</span><span class="cc-lbl">Besoin d'emprunt<span class="cc-note" id="cc-besoin-note">—</span></span><span class="cc-val" id="cc-besoin">—</span></li>
+          </ul>
+        </div>
+
+        <div class="cc-step">
+          <div class="cc-head">
+            <span class="cc-num">2</span>
+            <div>
+              <h3 class="cc-title">Ce que le lieu dégage chaque année</h3>
+              <p class="cc-desc">Les recettes, moins les charges de fonctionnement. L'emprunt est exclu&nbsp;: c'est lui que cette somme rembourse.</p>
+            </div>
+          </div>
+          <ul class="cc-rows">
+            <li><span class="cc-op"></span><span class="cc-lbl">Recettes annuelles<a class="cc-src" href="#recettes">Recettes</a></span><span class="cc-val" id="cc-rec">—</span></li>
+            <li><span class="cc-op">−</span><span class="cc-lbl">Charges hors emprunt<a class="cc-src" href="#charges">Charges : auberge, fluides, assurances</a></span><span class="cc-val" id="cc-chg">—</span></li>
+            <li class="cc-tot"><span class="cc-op">=</span><span class="cc-lbl">Capacité de remboursement<span class="cc-note" id="cc-cap-note">—</span></span><span class="cc-val" id="cc-cap">—</span></li>
+          </ul>
+        </div>
+
+        <div class="cc-step">
+          <div class="cc-head">
+            <span class="cc-num">3</span>
+            <div>
+              <h3 class="cc-title">Le temps pour rembourser</h3>
+              <p class="cc-desc">Toute la capacité annuelle rembourse le besoin d'emprunt, intérêts compris, au taux de la section Charges.</p>
+            </div>
+          </div>
+          <ul class="cc-rows">
+            <li><span class="cc-op"></span><span class="cc-lbl">Besoin d'emprunt<a class="cc-src" href="#conclusion">Étape 1</a></span><span class="cc-val" id="cc-k">—</span></li>
+            <li><span class="cc-op"></span><span class="cc-lbl">Capacité de remboursement<a class="cc-src" href="#conclusion">Étape 2</a></span><span class="cc-val" id="cc-a">—</span></li>
+            <li><span class="cc-op"></span><span class="cc-lbl">Intérêts au taux annuel<a class="cc-src" href="#charges">Remboursement de l'emprunt</a></span><span class="cc-val" id="cc-tx">—</span></li>
+            <li class="cc-tot"><span class="cc-op">=</span><span class="cc-lbl">Durée de remboursement<span class="cc-note" id="cc-int-note">—</span></span><span class="cc-val" id="cc-duree">—</span></li>
+          </ul>
+          <label class="cc-start">Premier remboursement en <input class="editable" id="cc-debut" type="number" value="2028" min="2020" max="2100" aria-label="Année du premier remboursement"></label>
+        </div>
+      </div>
+
+      <div class="res-band">
+        <div>
+          <p class="res-l">Fin du remboursement</p>
+          <p class="res-f" id="cc-fin-f">—</p>
+        </div>
+        <p class="res-v" id="cc-fin">—</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container container--wide">
+    <p class="footer-note">Simulation interactive. Les montants présentés sont des estimations indicatives, à valider avec un expert-comptable.</p>
+    <div class="footer-bottom">
+      <p>Les Ateliers Bertin · SCI Robin-Deschamps · 14 &amp; 16 rue de la Citadelle, 79200 Parthenay</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="plan.html">Plan du site</a></li>
+        <li><a href="chiffrage.html">Chiffrage</a></li>
+        <li><a href="pavillon-bertin.html">Prévisionnel</a></li>
+        <li><a href="financements.html">Financements</a></li>
+        <li><a href="devis.html">Devis</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script type="module" src="db.js"></script>
+<script src="global.js"></script>
+<script src="pavillon-bertin.js"></script>
+</body>
+</html>
