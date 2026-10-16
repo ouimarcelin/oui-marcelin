@@ -810,9 +810,23 @@ img { max-width: 100%; }
     kick();
   }
 
+  /* ——— Retour haptique (Android/Chrome uniquement : iOS Safari n'implémente pas vibrate) ——— */
+  const canBuzz = typeof navigator.vibrate === "function"
+    && matchMedia("(hover: none) and (pointer: coarse)").matches
+    && !matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let lastBuzz = 0;
+  function buzz(ms = 8) {
+    if (!canBuzz || !booted || document.hidden) return;
+    const now = performance.now();
+    if (now - lastBuzz < 60) return;
+    lastBuzz = now;
+    try { navigator.vibrate(ms); } catch {}
+  }
+
   function setActive(i) {
     if (i === active) return;
     active = i;
+    buzz(8);
     const p = PROJECTS[i];
     root.style.setProperty("--accent", p.accent);
     root.style.setProperty("--on-accent", onAccent(p.accent));
