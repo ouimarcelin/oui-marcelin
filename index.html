@@ -352,7 +352,13 @@ img { max-width: 100%; }
 }
 
 /* ——— Boot sequence ——— */
-[data-phase="boot"] .stage { animation: stage-open 1.05s cubic-bezier(.76, 0, .24, 1) .1s both; }
+/* Intro : la phrase s'affiche d'abord au centre de l'écran, puis glisse vers sa place. */
+.hello-wrap { transition: translate .95s var(--ease); }
+[data-phase="boot"] .hello-wrap { z-index: 30; }
+[data-phase="boot"].lead-center .hello-wrap { width: max-content; max-width: 100%; }
+[data-phase="boot"].lead-center .boot { top: calc(100% + 20px); bottom: auto; white-space: pre; }
+[data-phase="boot"] .stage { opacity: 0; }
+[data-phase="boot"].lead-out .stage { opacity: 1; animation: stage-open 1.05s cubic-bezier(.76, 0, .24, 1) both; }
 @keyframes stage-open {
   0%   { clip-path: inset(50% 50% 50% 50% round 0); background: var(--ink); }
   42%  { clip-path: inset(calc(50% - 1px) 0 calc(50% - 1px) 0 round 0); background: var(--ink); }
@@ -1062,6 +1068,13 @@ img { max-width: 100%; }
     const crumbText = crumbCur.textContent; crumbCur.textContent = "";
     setTimeout(() => scramble(crumbCur, crumbText, 700), 200);
     const labels = items.map(it => { const t = it.lbl.textContent; it.lbl.textContent = ""; return t; });
+
+    /* Largeur figée sur le texte final : la phrase reste centrée pendant la frappe. */
+    const lead = $(".hello-wrap");
+    app.classList.add("lead-center");
+    role.textContent = ROLES[0];
+    const leadW = Math.ceil(lead.getBoundingClientRect().width);
+    lead.style.width = leadW + "px";
     l1.textContent = ""; role.textContent = "";
 
     let loaded = 0;
@@ -1073,8 +1086,12 @@ img { max-width: 100%; }
       return img.decode().catch(() => {}).finally(() => { loaded++; });
     });
 
+    let openStage;
+    const stageGate = new Promise(r => { openStage = r; });
+
     const reveals = (async () => {
-      await wait(950);
+      await stageGate;
+      await wait(280);
       await Promise.all(bootTiles.map(async (f, k) => {
         await wait(k * 80);
         await Promise.race([decoded[k], wait(2600)]);
@@ -1084,6 +1101,25 @@ img { max-width: 100%; }
       }));
     })();
 
+    /* 1 — la phrase arrive seule, au centre de l'écran */
+    const centerLead = () => {
+      lead.style.translate = "0 0";
+      const r = lead.getBoundingClientRect();
+      lead.style.transition = "none";
+      const vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;
+      lead.style.translate = `${Math.round(vw / 2 - (r.left + r.width / 2))}px ${Math.round(vh / 2 - (r.top + r.height / 2))}px`;
+      lead.getBoundingClientRect();
+      lead.style.transition = "";
+    };
+    centerLead();
+    addEventListener("resize", centerLead);
+
+    app.classList.add("hello-in");
+    await typeText(l1, "Oui, je suis", 42);
+    await scramble(role, ROLES[0], 720);
+    await wait(180);
+
+    /* 2 — console de chargement sous la phrase */
     const lines = [
       "bureau://oui.marcelin",
       "› montage du volume ……… ok",
@@ -1114,15 +1150,21 @@ img { max-width: 100%; }
     await wait(260);
     bootEl.hidden = true;
 
-    app.classList.add("hello-in");
-    await typeText(l1, "Oui, je suis", 42);
+    /* 3 — la phrase glisse à sa place pendant que tout le reste apparaît */
+    removeEventListener("resize", centerLead);
+    app.classList.remove("lead-center");
+    lead.style.width = "";
+    app.classList.add("lead-out");
+    lead.style.translate = "0 0";
+    openStage();
 
     app.classList.add("wheel-in");
     items.forEach((it, k) => setTimeout(() => scramble(it.lbl, labels[k], 520), 40 + Math.abs(k - startIndex) * 45));
 
     booted = true;
     app.dataset.phase = "ready";
-    await scramble(role, ROLES[0], 720);
+    await wait(950);
+    lead.style.translate = "";
     await reveals;
     syncVideos();
     setHash(PROJECTS[active].id);
