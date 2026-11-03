@@ -1079,16 +1079,19 @@ img { max-width: 100%; }
       }));
     })();
 
-    /* 1 — la phrase arrive seule, au centre de l'écran, puis reste à mi-hauteur */
+    /* 1 — Desktop : la phrase arrive au centre, puis glisse à gauche en restant à mi-hauteur.
+           Mobile : la phrase arrive ferrée à gauche à mi-hauteur, puis remonte sans bouger en X. */
     let parked = false, leadDy = 0;
     const placeLead = () => {
       lead.style.transition = "none";
       lead.style.translate = "0 0";
       const r = lead.getBoundingClientRect();
       const vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;
-      const dx = Math.round(vw / 2 - (r.left + r.width / 2));
-      leadDy = mqMobile.matches ? 0 : Math.round(vh / 2 - (r.top + r.height / 2));
-      lead.style.translate = parked ? `0 ${leadDy}px` : `${dx}px ${leadDy}px`;
+      const mob = mqMobile.matches;
+      const dx = mob ? 0 : Math.round(vw / 2 - (r.left + r.width / 2));
+      const dy = Math.round(vh / 2 - (r.top + r.height / 2));
+      leadDy = mob ? 0 : dy;
+      lead.style.translate = parked ? `0 ${leadDy}px` : `${dx}px ${dy}px`;
       lead.getBoundingClientRect();
       lead.style.transition = "";
     };
