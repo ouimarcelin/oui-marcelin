@@ -111,4 +111,3 @@ collections:
             name: roles
             widget: list
             field: { label: Métier, name: role, widget: string }
-          - { label: Bio, name: bio, widget: text, hint: "Chaque retour à la ligne crée une nouvelle ligne sur le site." }
