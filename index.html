@@ -221,7 +221,6 @@ img { max-width: 100%; }
 /* ——— Stage ——— */
 .stage {
   --pad: clamp(14px, 1.9vw, 28px);
-  --peek: 58px;
   --sheet-gap: clamp(18px, 2vw, 28px);
   --tile-gap: clamp(8px, .9vw, 14px);
   position: relative;
@@ -234,14 +233,26 @@ img { max-width: 100%; }
 }
 .track {
   position: absolute;
-  top: var(--pad); left: var(--pad); right: var(--pad);
-  display: flex; flex-direction: column; gap: var(--sheet-gap);
+  top: var(--pad); left: var(--pad); bottom: var(--pad);
+  display: flex; flex-direction: row; align-items: stretch; gap: var(--sheet-gap);
   will-change: transform;
 }
-.sheet { flex: none; height: var(--sheet-h, 600px); display: grid; gap: var(--tile-gap); }
+.sheet {
+  flex: none;
+  width: var(--sheet-w, 600px);
+  height: 100%;
+  display: grid; gap: var(--tile-gap);
+  align-content: start;
+  overflow-y: auto; overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.sheet::-webkit-scrollbar { width: 0; height: 0; }
 .end {
-  height: var(--peek);
-  display: flex; align-items: flex-start; justify-content: center;
+  flex: none;
+  width: var(--sheet-w, 600px);
+  height: 100%;
+  display: flex; align-items: center; justify-content: center;
   font: 400 11px/1 var(--mono); color: var(--muted);
 }
 .end a { color: inherit; }
@@ -254,7 +265,7 @@ img { max-width: 100%; }
   border-radius: 3px;
   background: var(--tile);
   cursor: zoom-in;
-  container-type: size;
+  container-type: inline-size;
   outline: none;
 }
 .tile[data-state="wait"] {
@@ -263,18 +274,15 @@ img { max-width: 100%; }
     linear-gradient(to top left, transparent calc(50% - .6px), var(--line) 50%, transparent calc(50% + .6px)),
     var(--tile);
 }
-.tile .pan {
-  position: absolute; inset: 0;
-  transform: translate3d(0, calc(var(--d, 0) * -5%), 0) scale(1.1);
-}
-.tile.contain .pan { transform: none; }
+.tile .pan { position: relative; display: block; }
+.tile[data-state="wait"] { min-height: 140px; }
 .tile .m {
-  display: block; width: 100%; height: 100%;
-  object-fit: cover;
+  display: block; width: 100%; height: auto;
+  object-fit: contain;
   opacity: 0;
   transition: opacity .5s, transform .9s var(--ease);
 }
-.tile.contain .m { position: absolute; top: 6%; left: 6%; width: 88%; height: 88%; object-fit: contain; }
+.tile.contain .pan { padding: 6%; }
 .tile[data-state="on"] .m { opacity: 1; }
 .tile:hover .m { transform: scale(1.035); }
 .tile .px { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity .4s; }
@@ -316,6 +324,7 @@ img { max-width: 100%; }
 
 .tile.note {
   cursor: default;
+  min-height: clamp(150px, 42cqw, 300px);
   background: var(--a);
   color: var(--on-a);
   padding: clamp(12px, 6cqmin, 22px);
@@ -327,18 +336,6 @@ img { max-width: 100%; }
   font: 500 clamp(14px, 5.4cqw, 26px)/1.12 var(--sans);
   letter-spacing: -.01em;
   text-wrap: balance;
-}
-
-.rail {
-  position: absolute; z-index: 4;
-  right: calc(var(--pad) / 2 - 1px); top: var(--pad); bottom: var(--pad);
-  width: 1px;
-  background: color-mix(in oklab, var(--ink) 12%, transparent);
-}
-.rail i {
-  position: absolute; left: -1px; width: 3px; height: 28px; border-radius: 2px;
-  background: var(--ink);
-  top: calc(var(--p, 0) * (100% - 28px));
 }
 
 /* ——— Boot sequence ——— */
@@ -419,7 +416,6 @@ img { max-width: 100%; }
   .wi { width: 100%; height: 56px; flex-direction: column-reverse; justify-content: center; gap: 7px; }
   .wi .lbl { transform-origin: 50% 50%; }
   .wi .dot, .wi .dot i { width: 14px; height: 14px; }
-  .stage { --peek: 40px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -470,7 +466,6 @@ img { max-width: 100%; }
 
   <main class="stage" id="stage">
     <div class="track" id="track"></div>
-    <div class="rail" aria-hidden="true"><i id="rail-tick"></i></div>
   </main>
 </div>
 
@@ -616,7 +611,7 @@ img { max-width: 100%; }
   /* ———————————————— Construction ———————————————— */
   const root = document.documentElement;
   const app = $("#app"), stage = $("#stage"), track = $("#track"), list = $("#wheel-list");
-  const crumbCur = $("#crumb-cur"), railTick = $("#rail-tick");
+  const crumbCur = $("#crumb-cur");
   const iIdx = $("#i-idx"), iYear = $("#i-year"), iKind = $("#i-kind"), iText = $("#i-text"), iTools = $("#i-tools"), info = $("#info");
   $("#i-total").textContent = pad(N);
 
@@ -635,6 +630,22 @@ img { max-width: 100%; }
     li.append(btn); list.append(li);
     return { li, btn, lbl, dot: btn.querySelector(".dot i") };
   });
+
+  /* Les lignes auto d'une grille CSS ne tiennent pas compte du ratio d'un média en largeur 100 % :
+     la hauteur de chaque tuile est donc calculée à partir de sa largeur réelle. */
+  const ratioTiles = new Set();
+  function sizeTile(f) {
+    const r = parseFloat(f.dataset.ar);
+    const w = f.clientWidth;
+    if (r > 0 && w > 0) f.style.height = `${Math.round(w / r)}px`;
+  }
+  function setRatio(f, w, h) {
+    if (!w || !h) return;
+    f.dataset.ar = w / h;
+    ratioTiles.add(f);
+    sizeTile(f);
+  }
+  function sizeTiles() { ratioTiles.forEach(sizeTile); }
 
   function makeTile(p, m, i, j) {
     const f = document.createElement("figure");
@@ -681,7 +692,10 @@ img { max-width: 100%; }
         if (!media.muted) media.play().catch(() => {});
       });
       media.addEventListener("timeupdate", () => { tc.textContent = `▶ ${fmt(media.currentTime)} / ${fmt(media.duration)}`; });
-      media.addEventListener("loadedmetadata", () => { tag.textContent = `${name} · ${media.videoWidth}×${media.videoHeight}`; });
+      media.addEventListener("loadedmetadata", () => {
+        tag.textContent = `${name} · ${media.videoWidth}×${media.videoHeight}`;
+        setRatio(f, media.videoWidth, media.videoHeight);
+      });
       f.append(tc, snd);
       if (!f._boot) f.dataset.state = "on";
     } else {
@@ -691,6 +705,7 @@ img { max-width: 100%; }
       media.loading = Math.abs(i - startIndex) <= 2 ? "eager" : "lazy";
       const on = () => {
         tag.textContent = `${name} · ${media.naturalWidth}×${media.naturalHeight}`;
+        setRatio(f, media.naturalWidth, media.naturalHeight);
         if (!f._boot) f.dataset.state = "on";
       };
       media.addEventListener("load", on, { once: true });
@@ -711,13 +726,27 @@ img { max-width: 100%; }
     s.setAttribute("aria-label", p.title);
     s.style.gridTemplateAreas = p.grid.map(r => `"${r}"`).join(" ");
     s.style.gridTemplateColumns = p.cols || `repeat(${p.grid[0].split(" ").length}, minmax(0, 1fr))`;
-    s.style.gridTemplateRows = p.rows || `repeat(${p.grid.length}, minmax(0, 1fr))`;
+    s.style.gridAutoRows = "auto";
     s.style.setProperty("--a", p.accent);
     s.style.setProperty("--on-a", onAccent(p.accent));
     p.media.forEach((m, j) => s.append(makeTile(p, m, i, j)));
     track.append(s);
     return s;
   });
+  /* TEMPORAIRE — panneaux blancs de test : ajouter ?test à l'URL pour les afficher. */
+  if (new URLSearchParams(location.search).has("test")) {
+    const i = PROJECTS.findIndex(p => p.id === "yoplait");
+    if (i >= 0) {
+      for (let k = 1; k <= 5; k++) {
+        const f = document.createElement("figure");
+        f.className = "tile note";
+        f.style.cssText = "grid-column: 1 / -1; height: 300px; min-height: 300px; background: #fff; color: #121212; display: grid; place-items: center; font: 500 28px/1 var(--mono);";
+        f.textContent = `TEST ${k}`;
+        sheets[i].append(f);
+      }
+    }
+  }
+
   const end = document.createElement("div");
   end.className = "end";
   end.innerHTML = `<span>Fin du bureau — <a href="https://ig.me/m/oui.marcelin" target="_blank" rel="noopener">écrire à @oui.marcelin</a></span>`;
@@ -725,26 +754,22 @@ img { max-width: 100%; }
 
   /* ———————————————— Moteur de défilement ———————————————— */
   let pos = startIndex, target = startIndex, active = -1;
-  let sheetH = 600, sheetGap = 24, gStart = null, idleTimer = 0, dragging = false;
+  let sheetW = 600, sheetGap = 24, gStart = null, idleTimer = 0, dragging = false;
   let raf = 0, last = 0, booted = false, lbState = null;
 
   function measure() {
-    const cs = getComputedStyle(stage);
-    const padPx = parseFloat(cs.getPropertyValue("--pad")) || 24;
-    const peek = parseFloat(cs.getPropertyValue("--peek")) || 58;
-    sheetGap = parseFloat(getComputedStyle(track).rowGap) || 24;
-    sheetH = Math.max(160, stage.clientHeight - padPx * 2 - peek);
-    track.style.setProperty("--sheet-h", `${sheetH}px`);
+    const ts = getComputedStyle(track);
+    const padPx = parseFloat(ts.left) || 24;  /* --pad non résolu via getPropertyValue : on lit la position de la piste */
+    sheetGap = parseFloat(ts.columnGap) || 24;
+    sheetW = Math.max(200, stage.clientWidth - padPx * 2);
+    track.style.setProperty("--sheet-w", `${sheetW}px`);
+    sizeTiles();
     render();
   }
 
   function render() {
     const horiz = mqMobile.matches;
-    track.style.transform = `translate3d(0, ${(-pos * (sheetH + sheetGap)).toFixed(2)}px, 0)`;
-    for (let i = 0; i < N; i++) {
-      const d = i - pos;
-      if (Math.abs(d) < 2.2) sheets[i].style.setProperty("--d", d.toFixed(4));
-    }
+    track.style.transform = `translate3d(${(-pos * (sheetW + sheetGap)).toFixed(2)}px, 0, 0)`;
     for (let i = 0; i < N; i++) {
       const it = items[i];
       const d = i - pos, ad = Math.abs(d), t = Math.max(0, 1 - ad);
@@ -762,7 +787,6 @@ img { max-width: 100%; }
       it.lbl.style.transform = `scale(${(1 + .24 * t).toFixed(3)})`;
       it.dot.style.transform = `scale(${((6 + 26 * t) / 32).toFixed(3)})`;
     }
-    railTick.style.setProperty("--p", (N > 1 ? clamp(pos, 0, N - 1) / (N - 1) : 0).toFixed(4));
     setActive(clamp(Math.round(pos), 0, N - 1));
   }
 
@@ -855,8 +879,13 @@ img { max-width: 100%; }
   /* ——— Entrées : molette, clavier, tactile ——— */
   addEventListener("wheel", e => {
     if (lbState || e.ctrlKey) return;
+    /* Dans la zone projet : le défilement vertical parcourt le projet, l'horizontal change de projet.
+       Hors zone projet : tout défilement change de projet. */
+    const sheet = e.target.closest?.(".sheet");
+    const scrollable = !!sheet && sheet.scrollHeight - sheet.clientHeight > 2;
+    if (scrollable && Math.abs(e.deltaY) > Math.abs(e.deltaX)) return;
     e.preventDefault();
-    let d = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+    let d = scrollable ? e.deltaX : (Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX);
     if (e.deltaMode === 1) d *= 40; else if (e.deltaMode === 2) d *= 800;
     if (gStart === null) gStart = Math.round(target);
     target = clamp(target + d / 240, -.35, N - 1 + .35);
@@ -884,7 +913,12 @@ img { max-width: 100%; }
   app.addEventListener("touchstart", e => {
     if (lbState || e.touches.length > 1) return;
     const t = e.touches[0];
-    touch = { x: t.clientX, y: t.clientY, start: target, axis: null, onWheel: !!e.target.closest(".wheel") };
+    const sheet = e.target.closest(".sheet");
+    touch = {
+      x: t.clientX, y: t.clientY, start: target, axis: null,
+      inStage: !!e.target.closest("#stage"),
+      scrollable: !!sheet && sheet.scrollHeight - sheet.clientHeight > 2
+    };
   }, { passive: true });
   app.addEventListener("touchmove", e => {
     if (!touch) return;
@@ -892,12 +926,14 @@ img { max-width: 100%; }
     const dx = t.clientX - touch.x, dy = t.clientY - touch.y;
     if (!touch.axis) {
       if (Math.hypot(dx, dy) < 8) return;
-      touch.axis = touch.onWheel && mqMobile.matches ? "x" : "y";
+      /* Dans la zone projet : le geste vertical est laissé au défilement du projet. */
+      if (touch.scrollable && Math.abs(dy) > Math.abs(dx)) { touch = null; return; }
+      touch.axis = "x";
       gStart = Math.round(touch.start);
       dragging = true;
     }
     e.preventDefault();
-    const delta = touch.axis === "x" ? -dx / 150 : -dy / (sheetH + sheetGap);
+    const delta = Math.abs(dx) >= Math.abs(dy) ? -dx / (touch.inStage ? sheetW * .75 : 150) : -dy / 150;
     target = clamp(touch.start + delta, -.35, N - 1 + .35);
     kick();
   }, { passive: false });
