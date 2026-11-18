@@ -875,13 +875,14 @@ img { max-width: 100%; }
   /* ——— Entrées : molette, clavier, tactile ——— */
   addEventListener("wheel", e => {
     if (lbState || e.ctrlKey) return;
-    /* Dans la zone projet : le défilement vertical parcourt le projet, l'horizontal change de projet.
+    /* Dans la zone projet : seul le défilement vertical agit, il parcourt le projet.
        Hors zone projet : tout défilement change de projet. */
-    const sheet = e.target.closest?.(".sheet");
-    const scrollable = !!sheet && sheet.scrollHeight - sheet.clientHeight > 2;
-    if (scrollable && Math.abs(e.deltaY) > Math.abs(e.deltaX)) return;
+    if (e.target.closest?.("#stage")) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.preventDefault();  /* pas de changement de projet sur les côtés */
+      return;
+    }
     e.preventDefault();
-    let d = scrollable ? e.deltaX : (Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX);
+    let d = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
     if (e.deltaMode === 1) d *= 40; else if (e.deltaMode === 2) d *= 800;
     if (gStart === null) gStart = Math.round(target);
     target = clamp(target + d / 240, -.35, N - 1 + .35);
