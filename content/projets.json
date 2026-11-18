@@ -29,8 +29,7 @@
         }
       ],
       "avance": {
-        "grille": "a a | b c",
-        "lignes": "1.05fr 1fr"
+        "grille": "a | b | c"
       }
     },
     {
@@ -77,7 +76,7 @@
         }
       ],
       "avance": {
-        "grille": "a a b b c c | d d d e e e"
+        "grille": "a | b | c | d | e"
       }
     },
     {
@@ -111,8 +110,7 @@
         }
       ],
       "avance": {
-        "grille": "a b | a c",
-        "colonnes": "1.1fr 1fr"
+        "grille": "a | b | c"
       }
     },
     {
@@ -146,7 +144,7 @@
         }
       ],
       "avance": {
-        "grille": "a b | a c"
+        "grille": "a | b | c"
       }
     },
     {
@@ -179,9 +177,7 @@
         }
       ],
       "avance": {
-        "grille": "a b | a c",
-        "colonnes": "1.08fr 1fr",
-        "lignes": ".9fr 1fr"
+        "grille": "a | b | c"
       }
     },
     {
@@ -212,8 +208,7 @@
         }
       ],
       "avance": {
-        "grille": "a a | b c",
-        "lignes": "1.05fr 1fr"
+        "grille": "a | b | c"
       }
     },
     {
@@ -258,8 +253,7 @@
         }
       ],
       "avance": {
-        "grille": "a a a a b b | c c d d e e",
-        "lignes": "1.15fr 1fr"
+        "grille": "a | b | c | d | e"
       }
     },
     {
@@ -291,9 +285,7 @@
         }
       ],
       "avance": {
-        "grille": "a b | c b",
-        "colonnes": "1fr .82fr",
-        "lignes": "1.3fr 1fr"
+        "grille": "a | b | c"
       }
     },
     {
@@ -324,7 +316,7 @@
         }
       ],
       "avance": {
-        "grille": "a b | a c"
+        "grille": "a | b | c"
       }
     },
     {
@@ -356,8 +348,7 @@
         }
       ],
       "avance": {
-        "grille": "a a | b c",
-        "lignes": "1.3fr 1fr"
+        "grille": "a | b | c"
       }
     },
     {
@@ -387,8 +378,7 @@
         }
       ],
       "avance": {
-        "grille": "a b | c c",
-        "lignes": "1.5fr .7fr"
+        "grille": "a | b | c"
       }
     },
     {
@@ -419,8 +409,7 @@
         }
       ],
       "avance": {
-        "grille": "a b | a c",
-        "lignes": "1.15fr 1fr"
+        "grille": "a | b | c"
       }
     },
     {
@@ -453,8 +442,7 @@
         }
       ],
       "avance": {
-        "grille": "a a | b c",
-        "lignes": "1.15fr 1fr"
+        "grille": "a | b | c"
       }
     },
     {
@@ -485,8 +473,7 @@
         }
       ],
       "avance": {
-        "grille": "a a | b c",
-        "lignes": "1.1fr 1fr"
+        "grille": "a | b | c"
       }
     },
     {
@@ -512,8 +499,7 @@
         }
       ],
       "avance": {
-        "grille": "a | b",
-        "lignes": "1.7fr 1fr"
+        "grille": "a | b"
       }
     }
   ]

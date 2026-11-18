@@ -485,9 +485,12 @@ img { max-width: 100%; }
 (async () => {
   /* ———————————————— Contenu ———————————————— */
   const LETTERS = "abcdefghijklmnop";
-  const PRESETS = {
-    1: ["a"], 2: ["a", "b"], 3: ["a b", "a c"], 4: ["a a a", "b c d"],
-    5: ["a a b b c c", "d d d e e e"], 6: ["a a b b c c", "d d e e f f"]
+  /* Rythme vertical : une image pleine largeur, puis une paire, et ainsi de suite. */
+  const stackGrid = n => {
+    const q = LETTERS.slice(0, Math.max(1, n)).split("");
+    const rows = [];
+    while (q.length) rows.push(q.shift());  /* un média par ligne, pleine largeur */
+    return rows;
   };
   const onNetlify = !/^(localhost|127\.0\.0\.1|\[::1\])?$/.test(location.hostname);
   const imgUrl = (path, w) => onNetlify && /\.(jpe?g|png|webp|avif)$/i.test(path)
@@ -499,17 +502,10 @@ img { max-width: 100%; }
     if (adv.grille) return { grid: adv.grille.split("|").map(s => s.trim()), cols: adv.colonnes, rows: adv.lignes };
     const letters = LETTERS.slice(0, Math.max(1, n)).split("");
     const rest = letters.slice(1);
-    if (p.mise_en_page === "grand-haut" && n > 1) return { grid: [rest.map(() => "a").join(" "), rest.join(" ")], rows: "1.1fr 1fr" };
+    if (p.mise_en_page === "grand-haut" && n > 1) return { grid: stackGrid(n) };
     if (p.mise_en_page === "grand-gauche" && n > 1) return { grid: rest.map(r => `a ${r}`), cols: "1.1fr 1fr" };
     if (p.mise_en_page === "colonnes") return { grid: [letters.join(" ")] };
-    if (n <= 6) return { grid: PRESETS[Math.max(1, n)] };
-    const rows = [];
-    for (let i = 0; i < n; i += 3) {
-      const chunk = letters.slice(i, i + 3);
-      while (chunk.length < 3) chunk.push(chunk[chunk.length - 1]);
-      rows.push(chunk.join(" "));
-    }
-    return { grid: rows };
+    return { grid: stackGrid(n) };
   }
 
   function normalize(raw) {
