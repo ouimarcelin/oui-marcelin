@@ -139,10 +139,15 @@
           "type": "image",
           "fichier": "/assets/img/academie65-2.webp",
           "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/academie65-3.webp",
+          "ajustement": "remplir"
         }
       ],
       "avance": {
-        "grille": "a a | b c",
+        "grille": "a a | b c | d d",
         "colonnes": "2.63fr 1fr"
       }
     },
