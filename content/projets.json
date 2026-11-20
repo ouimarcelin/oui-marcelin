@@ -115,6 +115,37 @@
       }
     },
     {
+      "titre": "Académie 65",
+      "id": "academie-65",
+      "type": "Identité · Logo animé",
+      "annee": "2026",
+      "couleur": "#F4631E",
+      "texte": "Identité pour l’Académie 65, club d’escalade : logotype sommet-lettre, déclinaison animée et application textile.",
+      "outils": [],
+      "mise_en_page": "auto",
+      "medias": [
+        {
+          "type": "video",
+          "fichier": "/assets/video/academie65.mp4",
+          "affiche": "/assets/img/academie65-poster.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/academie65-1.webp",
+          "ajustement": "remplir"
+        },
+        {
+          "type": "image",
+          "fichier": "/assets/img/academie65-2.webp",
+          "ajustement": "remplir"
+        }
+      ],
+      "avance": {
+        "grille": "a | b | c"
+      }
+    },
+    {
       "titre": "Stranger Things",
       "id": "stranger-things",
       "type": "Affiche vectorielle · Netflix",
