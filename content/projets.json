@@ -23,17 +23,6 @@
           "ajustement": "remplir"
         },
         {
-          "type": "image",
-          "fichier": "/assets/img/yoplait-1.webp",
-          "ajustement": "remplir"
-        },
-        {
-          "type": "image",
-          "fichier": "/assets/img/yoplait-2.webp",
-          "cadrage": "0% 50%",
-          "ajustement": "remplir"
-        },
-        {
           "type": "video",
           "fichier": "/assets/video/yoplait-story.mp4",
           "affiche": "/assets/img/yoplait-story-poster.webp",
@@ -41,7 +30,7 @@
         }
       ],
       "avance": {
-        "grille": "a | b | c | d | e"
+        "grille": "a | b | c"
       }
     },
     {
