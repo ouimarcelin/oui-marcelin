@@ -30,8 +30,7 @@
         }
       ],
       "avance": {
-        "grille": "a b | c b",
-        "colonnes": "1.5fr 1fr"
+        "grille": "a | c | b"
       }
     },
     {
