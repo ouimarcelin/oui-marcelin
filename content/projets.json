@@ -17,6 +17,12 @@
           "ajustement": "remplir"
         },
         {
+          "type": "video",
+          "fichier": "/assets/video/yoplait-yop.mp4",
+          "affiche": "/assets/img/yoplait-yop-poster.webp",
+          "ajustement": "remplir"
+        },
+        {
           "type": "image",
           "fichier": "/assets/img/yoplait-1.webp",
           "ajustement": "remplir"
@@ -26,10 +32,16 @@
           "fichier": "/assets/img/yoplait-2.webp",
           "cadrage": "0% 50%",
           "ajustement": "remplir"
+        },
+        {
+          "type": "video",
+          "fichier": "/assets/video/yoplait-story.mp4",
+          "affiche": "/assets/img/yoplait-story-poster.webp",
+          "ajustement": "remplir"
         }
       ],
       "avance": {
-        "grille": "a | b | c"
+        "grille": "a | b | c | d | e"
       }
     },
     {
