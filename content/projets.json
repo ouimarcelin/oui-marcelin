@@ -142,7 +142,8 @@
         }
       ],
       "avance": {
-        "grille": "a | b | c"
+        "grille": "a a | b c",
+        "colonnes": "2.63fr 1fr"
       }
     },
     {
