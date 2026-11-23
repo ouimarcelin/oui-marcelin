@@ -48,7 +48,7 @@ collections:
                 widget: select
                 multiple: true
                 required: false
-                options: [Ps, Ai, Id, Ae, Pr, Blender, C4D, Figma]
+                options: [Ps, Ai, Id, Blender, Ae, Figma]
               - label: Mise en page
                 name: mise_en_page
                 widget: select
